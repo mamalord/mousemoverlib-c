@@ -5,6 +5,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+static void errorandbail(char *format, ...) {
+    va_list list;
+    va_start(list, format);
+    vfprintf(stderr, format, list);
+    va_end(list);
+    exit(1);
+}
+
 void moveMouseTo(int monitorNum, int x, int y) {
     Display *dpy;
     dpy = XOpenDisplay(NULL);
